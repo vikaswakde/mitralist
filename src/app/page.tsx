@@ -1,101 +1,110 @@
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { BiMessageRoundedDetail, BiRightArrow } from "react-icons/bi";
+import { BsLightningCharge } from "react-icons/bs";
+import { FaArrowRight } from "react-icons/fa";
+import { GiLightningElectron } from "react-icons/gi";
+import { HiOutlineHome } from "react-icons/hi2";
+import { IoSearchOutline } from "react-icons/io5";
+import {
+  PiPencilDuotone,
+  PiRocket,
+  PiSuitcaseSimpleDuotone,
+} from "react-icons/pi";
 
-export default function Home() {
+const NAVIGATION_ITEMS = [
+  {
+    title: "Scroll",
+    icon: <HiOutlineHome />,
+  },
+  {
+    title: "Spotlight",
+    icon: <PiRocket />,
+  },
+  {
+    title: "Articles",
+    icon: <PiPencilDuotone />,
+  },
+  {
+    title: "Inbox",
+    icon: <BiMessageRoundedDetail />,
+  },
+  {
+    title: "Jobs",
+    icon: <PiSuitcaseSimpleDuotone />,
+  },
+  {
+    title: "Search",
+    icon: <IoSearchOutline />,
+  },
+];
+
+const Home = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="w-full h-full flex justify-center items-center relative bg-white">
+      <div className="lg:max-w-[1200px] w-full min-h-screen mx-auto flex mt-1">
+        {/* Left sidebar for navigation/header */}
+        <section className="hidden fixed w-[13.25rem] border-r lg:flex flex-col  h-screen items-stretch flex-shrink-0 space-y-2  ">
+          <div className="w-full flex flex-col h-full items-stretch mt-2">
+            {/* Logo */}
+            <Link href={"/"} className="mb-6 flex items-center">
+              <span className="bg-mitralist h-8 w-8 rounded-xl p-2 text-white font-bold flex items-center justify-center"> <span className="text-[1rem]">M</span>
+              </span>
+              <span className="text-2xl font-extrabold ml-2 font-serif tracking-wider">Mitralist</span>
+            </Link>
+            <div className="bg-yellow-400 my-4">
+              {NAVIGATION_ITEMS.map((item) => (
+                <Link
+                  href={`/${item.title.toLowerCase()}`}
+                  className="flex items-center  justify-start w-fit  space-x-3   rounded-3xl p-2 text-xl"
+                  key={item.title}
+                >
+                  <div className="text-2xl">{item.icon}</div>
+                  <div className="hover:translate-x-1 hover:translte-y-2 transition duration-200">
+                    {item.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="py-3 flex space-x-1 items-center">
+              {/* image */}
+              {/* <Image src={"/dumy-profile.png"} fill alt="profile" /> */}
+              <div className="rounded-full bg-slate-300 h-7 w-7"></div>
+              <div className="flex flex-col space-x-1">
+                {/* firstname */}
+                <span className="hover:translate-x-1 transition duration-200 cursor-pointer ml-2">
+                  Vikas
+                </span>
+                <div className="flex w-full items-center space-x-1 hover:translate-x-1  transition duration-200 cursor-pointer">
+                  <span className="text-sm">
+                    {/* followers & following */}7{" "}
+                    <span className="text-xs">followers</span>{" "}
+                    <span className="">-</span> 19{" "}
+                    <span className="text-xs">Follwoing</span>
+                  </span>
+                  <FaArrowRight className="text-xs" />
+                </div>
+              </div>
+            </div>
+            <button className="bg-mitralist rounded-xl py-1 flex items-center space-x-2 justify-center w-fit px-2 text-white font-semibold my-2">
+              <BsLightningCharge />
+              <span>Quick Actions</span>
+              <span className="bg-[#1E874B] px-1 rounded-sm text-sm">
+                Ctrl K
+              </span>
+            </button>
+            <div className="flex h-full bg-blue-200 items-end">
+              <div className="bg-orange-400 h-[12rem] w-[12rem] flex items-center justify-center mx-auto mb-2 rounded-2xl"></div>
+            </div>
+          </div>
+          <div>the bottom card</div>
+        </section>
+        {/* <main>Main content</main>
+        <section>right section</section> */}
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
