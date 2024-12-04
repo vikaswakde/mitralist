@@ -6,11 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { HiOutlineHome } from "react-icons/hi2";
 import { ImPencil2 } from "react-icons/im";
 import { IoSearchOutline } from "react-icons/io5";
-import {
-  PiPencilDuotone,
-  PiRocket,
-  PiSuitcaseSimpleDuotone,
-} from "react-icons/pi";
+import { PiRocket, PiSuitcaseSimpleDuotone } from "react-icons/pi";
 
 const NAVIGATION_ITEMS = [
   {

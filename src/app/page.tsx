@@ -6,20 +6,14 @@ import {
   FocusIcon,
   ImagePlusIcon,
   LayoutList,
-  ListFilter,
   ListFilterIcon,
   ListTodoIcon,
-  MenuIcon,
   Repeat2,
-  UploadIcon,
-  VoteIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { BiMessageSquare, BiUpvote } from "react-icons/bi";
-import { GiOpenBook } from "react-icons/gi";
+
 import { ImPencil2 } from "react-icons/im";
-import { PiPencilDuotone } from "react-icons/pi";
-import { RiListRadio } from "react-icons/ri";
 
 const Home = () => {
   return (
