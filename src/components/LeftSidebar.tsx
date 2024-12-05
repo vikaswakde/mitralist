@@ -1,3 +1,4 @@
+import { DotIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { BiMessageRoundedDetail } from "react-icons/bi";
@@ -91,7 +92,17 @@ const LeftSidebar = () => {
           <div className="bg-slate-300 h-[12rem] w-[12rem] flex items-center justify-center mx-auto mb-2 rounded-2xl"></div>
         </div>
       </div>
-      <div>the bottom card</div>
+      <div className="flex flex-col items-start">
+        <div className="flex items-center text-[10px] text-gray-800 w-fit max-w-[70%]">
+          <span>Blog</span> <DotIcon className="text-xs" />
+          <span>Support</span> <DotIcon className="text-xs" />
+          <span>Help</span> <DotIcon className="text-xs" />
+          <span>Legal</span>
+        </div>
+        <div className="text-xs text-semibold pb-2 ">
+          &copy; 2024 Mitralist, Open Source
+        </div>
+      </div>
     </section>
   );
 };
