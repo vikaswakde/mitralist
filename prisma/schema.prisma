@@ -4,7 +4,6 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,30 +13,85 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-        
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
-
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int     @unique
-}
+// model Profile {
+//   id     Int     @id @default(autoincrement())
+//   bio    String?
+//   user   User    @relation(fields: [userId], references: [id])
+//   userId Int     @unique
+// }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
+  id         String    @id
+  email      String    @unique
+  username   String    @unique
+  name       String
+  bio        String?   @db.Text
+  image      String?
+  coverImage String?
+  posts      Post[]
+  comments   Comment[]
+  likes      Like[]
+  // Shows who follows this user (where this user is being followed)
+  followers  Follows[] @relation("following")
+
+  // Shows who this user follows (where this user is follower)
+  following Follows[] @relation("follower")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Post {
+  id       String    @id @default(cuid())
+  content  String?
+  images   String[]
+  // authorId references to id of USER 
+  author   User      @relation(fields: [authorId], references: [id])
+  authorId String
+  likes    Like[]
+  comments Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  // each comment belongs to one Post 
+  // many to one relations
+  // one post can have many comments
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+  // each comment is written by one User
+  // many to one relations
+  // one user can write many comments
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Like {
+  // one user can create multiple likes
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  // a post can have multiple likes
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+  createdAt DateTime @default(now())
+
+  // unique combination of UserId and POstId to prevent user liking a post multiple times
+  @@id([userId, postId])
+}
+
+model Follows {
+  // represents who is doing the following
+  follower   User   @relation("follower", fields: [followerId], references: [id])
+  followerId String
+
+  // represents who is being followed
+  following   User   @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  createdAt DateTime @default(now())
+
+  @@id([followerId, followingId])
 }
